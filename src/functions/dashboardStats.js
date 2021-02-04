@@ -11,15 +11,15 @@ let response = new Twilio.Response();
   response.setBody("updated");
   
 var moment = require('moment-timezone');
-var endDate = moment().tz("Australia/Perth").toDate();
-var endHour = moment().tz("Australia/Perth").hour();
+var endDate = moment().tz("Australia/Darwin").toDate();
+var endHour = moment().tz("Australia/Darwin").hour();
 
 var startDate;
 if(endHour >= 6){
     console.log('late');
-    startDate = moment().tz("Australia/Perth").hour(6).minute(0).second(0).millisecond(0).toDate();
+    startDate = moment().tz("Australia/Darwin").hour(6).minute(0).second(0).millisecond(0).toDate();
 } else {
-    startDate = moment().tz("Australia/Perth").hour(6).minute(0).second(0).millisecond(0).subtract(1, 'days').toDate();
+    startDate = moment().tz("Australia/Darwin").hour(6).minute(0).second(0).millisecond(0).subtract(1, 'days').toDate();
     console.log('early');
 }
 
