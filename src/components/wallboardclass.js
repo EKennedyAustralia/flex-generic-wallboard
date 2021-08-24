@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import SyncClient from "../../node_modules/twilio-sync";
 import request from "request"
+const runtimeDomain = 'https://mauve-bison-2170.twil.io'
 var parentTimer
 const initialDate = new Date()
 const styles = theme => ({
@@ -85,8 +86,8 @@ class Wallboardclass extends Component {
         
 
         setTimeout(function(){window.location.reload()}, 3600000);
-        setTimeout(function(){request.post('https://mauve-bison-2170.twil.io/dashboardStats'); console.log("fetching...")}, 5000)
-        fetch('https://mauve-bison-2170.twil.io/syncToken')
+        setTimeout(function(){request.post(`${runtimeDomain}/dashboardStats`); console.log("fetching...")}, 5000)
+        fetch(`${runtimeDomain}/syncToken`)
         .then(response => response.json())
         .then(data => {
             var syncClient = new SyncClient(data.token);
@@ -148,7 +149,7 @@ class Wallboardclass extends Component {
 
     componentDidUpdate(){
         clearTimeout(parentTimer);
-        parentTimer = setTimeout(function(){request.post('https://mauve-bison-2170.twil.io/dashboardStats'); console.log("fetching...")}, 5000)
+        parentTimer = setTimeout(function(){request.post(`${runtimeDomain}/dashboardStats`); console.log("fetching...")}, 5000)
 
     }
 
